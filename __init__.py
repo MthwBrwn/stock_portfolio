@@ -1,6 +1,6 @@
 # imports
 from flask import Flask
-
+from ..app import routes, forms, models, exceptions
 import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -16,4 +16,3 @@ app.config.from_mapping(
     SQLALCHEMY_TRACK_MODIFICATIONS=False,
 )
 
-from ..app import routes, forms, models, exceptions
