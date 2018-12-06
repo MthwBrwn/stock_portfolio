@@ -13,6 +13,7 @@ README.md - Containing good documentation for how to setup, install, and run you
 Copy all of your standard config files into the root of the project, such as .editorconfig and .gitignore, etc
 stock_portfolio/tests/ - Contains test suite for your application
 Create a file stock_portfolio/.env and add the following. Then Save and close.
+
 FLASK_APP=app.py
 FLASK_ENV=development
 DATABASE_URL=postgres://user:password@localhost:5432/dbname
@@ -32,8 +33,8 @@ Response body:
       </ul>
       </nav>
       ...
-                
-      ...                
+
+      ...
       <h1>Welcome to your future!</h1>
       <p>Some fancy description about the site's features</p>
       ...
@@ -50,7 +51,7 @@ Response body:
 POST /search - for persisting company detail from 3rd party API
 Status code: 201 CREATED
 Response body:
-    <!-- redirect to: portfolio.html -->  
+    <!-- redirect to: portfolio.html -->
     <h2>Company Name</h2>
     ...other company information
 
