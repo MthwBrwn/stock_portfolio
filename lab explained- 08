@@ -21,6 +21,7 @@ SECRET_KEY=5a9143ae-c439-4ea1-8228-5d67da63d1e4
 exit and restart your virtual environment to mount that environment variable in the shell session
 Features
 Ensure that your application can accept requests to the following routes, and returns the appropriate response:
+
 GET / - the base app route
 Status code: 200 OK
 Response body:
