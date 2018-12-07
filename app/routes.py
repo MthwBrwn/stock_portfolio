@@ -2,7 +2,7 @@ from . import app
 
 # 3rd prty requirements
 from flask import render_template, redirect, url_for, abort
-from sqlalchemy.exc import IntegrityError
+# from sqlalchemy.exc import IntegrityError
 from .forms import CompanySearchForm
 # API requests
 import requests as req
@@ -25,16 +25,15 @@ def home():
     """ this route is the home page for the stocks app """
     return render_template('home.html')
 
-@app.route('/search', methods=['GET', 'POST'])
 
+@app.route('/search', methods=['GET', 'POST'])
 def company_search():
     """ """
     form = CompanySearchForm
-
     if form.validate_on_submit():
         res = req.get(f'https://api.iextrading.com/1.0/stock/{ form.data["symbol"] }/company')
         try:
-            data = jason.loads(res.text)
+            data = json.loads(res.text)
             company = {
                 'symbol': data['symbol'],
                 'companyName': data['companyName'],
@@ -64,4 +63,4 @@ def company_search():
 def portfolio_detail():
     """
     """
-    return render_template('portfolio/portfolio.html', form = form)
+    return render_template('portfolio/portfolio.html', form=form)

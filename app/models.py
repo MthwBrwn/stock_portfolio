@@ -12,6 +12,7 @@ migrate = Migrate(app, db)
 
 # models
 
+
 class Company(db.Model):
     __tablename__= 'companies'
 
