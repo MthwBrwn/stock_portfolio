@@ -23,7 +23,7 @@ def home():
 def company_search():
     """ this is the route for the search page It first validated and
     then attempts to get info form the API """
-    form = CompanySearchForm
+    form = CompanySearchForm()
     if form.validate_on_submit():
         res = req.get(f'https://api.iextrading.com/1.0/stock/{ form.data["symbol"] }/company')
         try:
