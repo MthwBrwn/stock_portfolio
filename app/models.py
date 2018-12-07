@@ -14,7 +14,7 @@ migrate = Migrate(app, db)
 
 
 class Company(db.Model):
-    __tablename__= 'companies'
+    __tablename__ = 'companies'
 
     id = db.Column(db.Integer, primary_key=True)
     symbol = db.Column(db.String(64), index=True, unique=True)

@@ -9,14 +9,7 @@ import requests as req
 from models import Company, db
 
 import json
-import os
-
-
-# helpers
-
-def get_stock_info(stock):
-    return req.get(f"{os.getenv('API_URL')}{code}&APPID={os.getenv('API_KEY')}")
-
+# import os
 
 # controllers
 
@@ -28,7 +21,8 @@ def home():
 
 @app.route('/search', methods=['GET', 'POST'])
 def company_search():
-    """ """
+    """ this is the route for the search page It first validated and
+    then attempts to get info form the API """
     form = CompanySearchForm
     if form.validate_on_submit():
         res = req.get(f'https://api.iextrading.com/1.0/stock/{ form.data["symbol"] }/company')
@@ -56,11 +50,11 @@ def company_search():
         except json.JSONDecodeError:
             abort(404)
 
-    return render_template(portfolio/search.htm)
+    return render_template('portfolio/search.html', form=form)
 
 
 @app.route('/portfolio')
 def portfolio_detail():
+    """This is the controller for the portfolio page
     """
-    """
-    return render_template('portfolio/portfolio.html', form=form)
+    return render_template('portfolio/portfolio.html')
