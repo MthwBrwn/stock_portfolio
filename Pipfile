@@ -6,6 +6,13 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+wtforms = "*"
+flask-wtf = "*"
+datetime = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
+psycopg2-binary = "*"
+requests = "*"
 
 [requires]
 python_version = "3.6"
