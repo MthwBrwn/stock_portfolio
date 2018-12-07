@@ -20,4 +20,4 @@ app.config.from_mapping(
     SQLALCHEMY_TRACK_MODIFICATIONS=False,
 )
 
-from . import routes, forms, models, exceptions
+from . import routes, forms, models

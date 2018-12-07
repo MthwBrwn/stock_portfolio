@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired
 # forms
 
 
-class CompanySearch(FlaskForm):
+class CompanySearchForm(FlaskForm):
     """
     This sets up the input field of the app
     """

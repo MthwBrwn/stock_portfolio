@@ -6,7 +6,7 @@ from flask import render_template, redirect, url_for, abort
 from .forms import CompanySearchForm
 # API requests
 import requests as req
-from models import Company, db
+from .models import Company, db
 
 import json
 # import os

@@ -30,4 +30,7 @@ class Company(db.Model):
     date_created = db.Column(db.DateTime, default=dt.now())
 
     def __repr__(self):
+        """
+        """
+
         return '<Company {}>'.format(self.companyName)
