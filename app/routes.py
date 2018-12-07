@@ -26,13 +26,13 @@ def home():
     return render_template('home.html')
 
 @app.route('/search', methods=['GET', 'POST'])
+
 def company_search():
     """ """
     form = CompanySearchForm
 
     if form.validate_on_submit():
-
-        res = req.get(f'https//api.iextrading.com/1.0/stock/{form.data['symbol']}/company)
+        res = req.get(f'https://api.iextrading.com/1.0/stock/{ form.data["symbol"] }/company')
         try:
             data = jason.loads(res.text)
             company = {
@@ -53,7 +53,8 @@ def company_search():
             db.session.commit()
 
             return redirect(url_for('.port'))
-        except: json.JSONDecodeError:
+
+        except json.JSONDecodeError:
             abort(404)
 
     return render_template(portfolio/search.htm)
@@ -63,4 +64,4 @@ def company_search():
 def portfolio_detail():
     """
     """
-    return render_template('portfolio/portfolio.html')
+    return render_template('portfolio/portfolio.html', form = form)
