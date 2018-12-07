@@ -1,12 +1,13 @@
 from . import app
 
 # 3rd prty requirements
-from flask import render_template, abort, redirect, url_for, session, g, make_response
+from flask import render_template, redirect, url_for, abort
 from sqlalchemy.exc import IntegrityError
-
+from .forms import CompanySearchForm
 # API requests
 import requests as req
-from json import JSONDecodeError
+from models import Company, db
+
 import json
 import os
 
@@ -22,41 +23,44 @@ def get_stock_info(stock):
 @app.route('/')
 def home():
     """ this route is the home page for the stocks app """
-    return 'test'
+    return render_template('home.html')
 
-def stock_search():
-    """This retrieves the stock info from the API"""
-    form = StockSearchForm()
+@app.route('/search', methods=['GET', 'POST'])
+def company_search():
+    """ """
+    form = CompanySearchForm
+
     if form.validate_on_submit():
-        stock = form.data['stock_name']
-        res = get_stock_info(stock)
 
+        res = req.get(f'https//api.iextrading.com/1.0/stock/{form.data['symbol']}/company)
         try:
-            session['context'] = res.text
-            return redirect(url_for('.stock_detail')
-        except JSONDecodeError:
-            abort(404)
-    return render_template(search.html, form=form)
+            data = jason.loads(res.text)
+            company = {
+                'symbol': data['symbol'],
+                'companyName': data['companyName'],
+                'exchange': data['exchange'],
+                'industry': data['industry'],
+                'website': data['website'],
+                'description': data['description'],
+                'CEO': data['CEO'],
+                'issueType': data['issueType'],
+                'sector': data['sector'],
+            }
 
-@app.route('/stocks')
-@app.route('/stocks/<stock_name>')
+            new_company = Company(**company)
 
-def stock_detail(stock_name = None):
-
-    if stock_name:
-        res = get_stock_info(code)
-        return render_template('stock_detail.html', **res.json())
-
-    else:
-
-        try:
-            context=json.loads(session['context'])
-            stock=StockModel(stockName=context['name'])
-            print('stock', stock)
-            db.session.add(stock)
+            db.session.add(new_company)
             db.session.commit()
-            return render_template('stock_detail.html', **context)
-        except IntegrityError as e:
-            print(e)
-            res=make_response('That stock already added :(', 400)
-            return res
+
+            return redirect(url_for('.port'))
+        except: json.JSONDecodeError:
+            abort(404)
+
+    return render_template(portfolio/search.htm)
+
+
+@app.route('/portfolio')
+def portfolio_detail():
+    """
+    """
+    return render_template('portfolio/portfolio.html')

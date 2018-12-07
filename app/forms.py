@@ -5,8 +5,8 @@ from wtforms.validators import DataRequired
 
 # forms
 
-class StockSearchForm(FlaskForm):
+class CompanySearch(FlaskForm):
     """
     This sets up the input field of the app
     """
-    stock_name = StringField('name', validators=[DataRequired()])
+    symbol = StringField('symbol', validators=[DataRequired()])
