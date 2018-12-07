@@ -45,7 +45,7 @@ def company_search():
             db.session.add(new_company)
             db.session.commit()
 
-            return redirect(url_for('.port'))
+            return redirect(url_for('.portfolio_detail'))
 
         except json.JSONDecodeError:
             abort(404)
